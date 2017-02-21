@@ -1,10 +1,10 @@
 <?php
 
 
-$center_x=-93.22;
-$center_y=44.98;
+$center_x=-93.24;
+$center_y=44.99;
 
-$level=1;
+$level=3;
 $total=pow(4,$level-1);
 $cuts=pow(2,$level);
 
@@ -30,10 +30,10 @@ for($i=1;$i<=$cuts;$i++)
 
 function getimg($x,$y,$i,$j)
 {
-	$url = "http://maps.googleapis.com/maps/api/staticmap?format=jpg&center=".$y.",".$x."&zoom=14&style=feature:road.local|visibility:off&style=feature:landscape.man_made|visibility:off&style=feature:transit.line|visibility:off&style=feature:poi|visibility:off&size=1280x1280&scale=2&key=AIzaSyA7310DYWmSjBtzzYCxGyJo3a5DU7b45pM";
+	$url = "http://maps.googleapis.com/maps/api/staticmap?format=jpg&center=".$y.",".$x."&zoom=16&style=feature:road.local|visibility:on&style=feature:landscape.man_made|visibility:on&style=feature:transit.line|visibility:on&style=feature:poi|visibility:on&size=1280x1280&scale=2&key=AIzaSyA7310DYWmSjBtzzYCxGyJo3a5DU7b45pM";
 
 	$ch = curl_init($url);
-	$fp = fopen('./mapcuts/'.$i.$j.'.jpg', 'wb');
+	$fp = fopen('./cut/'.$i.$j.'.jpg', 'wb');
 	curl_setopt($ch, CURLOPT_FILE, $fp);
 	curl_setopt($ch, CURLOPT_HEADER, 0);
 	curl_exec($ch);
