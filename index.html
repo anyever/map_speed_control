@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="./jquery.js"></script>
+        <link rel="stylesheet" href="style.css" type="text/css" />
+	</head>
+
+	<body style="overflow:hidden;">
+	
+	<img id="img1" name="img1" class="map speed3 show" src="14.jpg" />
+    <img id="img2" name="img2" class="map speed3" src="17.jpg" />
+    <img id="img3" name="img3" class="map speed3" src="16.jpg" />
+    <img id="img4" name="img4" class="map speed3" src="17.jpg" />
+
+	<div>
+		<div id="none" class="speed_btn">None</div>
+		<div id="fast" class="speed_btn">Fast</div>
+		<div id="slow" class="speed_btn">Slow</div>
+	</div>
+
+	</body>
+</html>
+<script>
+var lastclick_x = -1;
+    var lastclick_y = -1;
+window.onload = function() {
+
+    /***初始化**/
+    var proportion = 1;
+    
+    if (1) proportion = $(window).width() / $('.map').width();
+    else proportion = $(window).height() / $('.map').height();
+
+    var img1_width = $('.map').width() * proportion/1.5;
+    var img1_height = $('.map').height() * proportion/1.5;
+
+    var img1_left = ($(window).width() - img1_width) / 1.5;
+    var img1_top = ($(window).height() - img1_height) / 1.5;
+
+    $('.map').width(img1_width);
+    $('.map').height(img1_height);
+    $(".map").offset({
+        left: img1_left,
+        top: img1_top
+    });
+
+    $('#slow').addClass("pressed");
+};
+
+
+//点击动画速度
+$('#none').click(function() {
+    $(".map").removeClass("speed1  speed2  speed3");
+    $(".map").addClass("speed1");
+    $(".speed_btn").removeClass("pressed");
+    $(this).addClass("pressed");
+});
+
+$('#fast').click(function() {
+    $(".map").removeClass("speed1  speed2  speed3");
+    $(".map").addClass("speed2");
+    $(".speed_btn").removeClass("pressed");
+    $(this).addClass("pressed");
+});
+
+$('#slow').click(function() {
+    $(".map").removeClass("speed1  speed2 speed3");
+    $(".map").addClass("speed3");
+    $(".speed_btn").removeClass("pressed");
+    $(this).addClass("pressed");
+});
+
+
+
+//点击图片
+$(".map").click(function(event) {
+
+    if (!$("#img4").hasClass("show")) {
+        posAndZoom();
+
+        $(".show").css("opacity", "0")
+        $(".show").last().next(".map").addClass("show");
+    } else {
+        posOnly();
+    }
+
+
+    //调整位中心置并放大到下一级。
+    function posAndZoom() {
+
+        lastclick_x = event.clientX;
+        lastclick_y = event.clientY;
+
+        $(".map").width($(".map").width() * 1.5)
+        $(".map").height($(".map").height() * 1.5)
+
+        var x = $(".map").offset().left * 1.5 - event.clientX * 1.5 + $(window).width() / 1.5;
+        var y = $(".map").offset().top * 1.5 - event.clientY * 1.5 + $(window).height() / 1.5;
+
+
+        $(".map").offset({
+            top: y,
+            left: x
+        })
+    }
+
+
+    //调整位中心置并放大到下一级。
+    function posAndSmall() {
+
+        $(".map").width($(".map").width() / 1.5)
+        $(".map").height($(".map").height() / 1.5)
+
+        var x = -($(".map").offset().left * 1.5 + lastclick_x * 1.5 - $(window).width() / 1.5)*2/3;
+        var y = -($(".map").offset().top * 1.5 + lastclick_y* 1.5 - $(window).height() / 1.5)*2/3;
+
+
+        $(".map").offset({
+            top: y,
+            left: x
+        })
+
+    }
+
+
+
+    //第四级后只调整位中心置。
+    function posOnly() {
+
+        var x = $(".map").offset().left - event.clientX + $(window).width() / 1.5;
+        var y = $(".map").offset().top - event.clientY + $(window).height() / 1.5;
+
+        $(".map").offset({
+            top: y,
+            left: x
+        })
+    }
+
+
+});
+</script>

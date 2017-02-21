@@ -1,0 +1,65 @@
+.map{
+	left: 0px;
+    top:  0px;
+	position:absolute;
+	opacity: 0;
+}
+
+.show
+{
+	opacity: 1;
+}
+
+.speed1
+{
+	transition:  left 0s, top 0s, height 0s, width 0s, transform 0s ease-in-out;
+	-moz-transition: left 0s, top 0s, height 0s, width 0s, transform 0s ease-in-out;
+	-webkit-transition:left 0s, top 0s, height 0s, width 0s, opacity 0s transform 0s ease-in-out;
+	-o-transition: left 0s, top 0s, height 0s, width 0s, transform 0s ease-in-out;
+
+}
+
+.speed2
+{
+	transition:  left 2s, top 2s, height 2s, width 2s, transform 2s ease-in-out;
+	-moz-transition: left 2s, top 2s, height 2s, width 2s, transform 2s ease-in-out;
+	-webkit-transition:left 2s, top 2s, height 2s, width 2s, opacity 2s transform 2s ease-in-out;
+	-o-transition: left 2s, top 2s, height 2s, width 2s, transform 2s ease-in-out;
+
+}
+
+.speed3
+{
+	transition:  left 4s, top 4s, height 4s, width 4s, transform 4s ease-in-out;
+	-moz-transition: left 4s, top 4s, height 4s, width 4s, transform 4s ease-in-out;
+	-webkit-transition:left 4s, top 4s, height 4s, width 4s, opacity 4s, transform 4s ease-in-out;
+	-o-transition: left 4s, top 4s, height 4s, width 4s, transform 4s ease-in-out;
+
+}
+
+
+.speed_btn{
+	width:50px;
+	position:absolute;
+	background:grey;
+	padding: 5px;
+	font-size:20px;
+	border-radius: 10px;
+	color: white;
+}
+
+.pressed
+{
+	background:black;
+}
+
+#none{
+}
+
+#fast{
+	top:55px;
+}
+
+#slow{
+	top:110px;
+}
